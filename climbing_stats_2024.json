@@ -1,0 +1,120 @@
+{
+  "monthly_sessions": [
+    {
+      "month": "2024-01",
+      "sessions": 225
+    },
+    {
+      "month": "2024-02",
+      "sessions": 364
+    },
+    {
+      "month": "2024-03",
+      "sessions": 393
+    },
+    {
+      "month": "2024-04",
+      "sessions": 392
+    },
+    {
+      "month": "2024-05",
+      "sessions": 391
+    },
+    {
+      "month": "2024-06",
+      "sessions": 359
+    },
+    {
+      "month": "2024-07",
+      "sessions": 287
+    },
+    {
+      "month": "2024-08",
+      "sessions": 183
+    },
+    {
+      "month": "2024-09",
+      "sessions": 133
+    }
+  ],
+  "top_locations": [
+    {
+      "location": "not specify ",
+      "sessions": 1473
+    },
+    {
+      "location": "BY BOT",
+      "sessions": 731
+    },
+    {
+      "location": "Home",
+      "sessions": 227
+    },
+    {
+      "location": " Indoors | PRock Haifa",
+      "sessions": 66
+    },
+    {
+      "location": " Indoors | Bloc JER",
+      "sessions": 53
+    },
+    {
+      "location": " Indoors ",
+      "sessions": 35
+    },
+    {
+      "location": " Indoors | Bloc TLV",
+      "sessions": 26
+    },
+    {
+      "location": " Indoors | PRock TLV",
+      "sessions": 20
+    },
+    {
+      "location": " Indoors | Isaac ",
+      "sessions": 13
+    },
+    {
+      "location": "Outdoors | Zanoach",
+      "sessions": 12
+    }
+  ],
+  "monthly_active_users": [
+    {
+      "month": "2024-01",
+      "users": 30
+    },
+    {
+      "month": "2024-02",
+      "users": 42
+    },
+    {
+      "month": "2024-03",
+      "users": 46
+    },
+    {
+      "month": "2024-04",
+      "users": 41
+    },
+    {
+      "month": "2024-05",
+      "users": 41
+    },
+    {
+      "month": "2024-06",
+      "users": 40
+    },
+    {
+      "month": "2024-07",
+      "users": 36
+    },
+    {
+      "month": "2024-08",
+      "users": 28
+    },
+    {
+      "month": "2024-09",
+      "users": 25
+    }
+  ]
+}
