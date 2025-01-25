@@ -29,7 +29,7 @@ const AdvancedAnalytics = ({ monthlyData, locationData }: AnalyticsProps) => {
   const engagementMetrics = useMemo(() => {
     return monthlyData.map(month => ({
       month: month.month,
-      sessionsPerUser: month.sessions / month.users,
+      sessionsPerUser: month.users ? month.sessions / month.users : 0,
       totalSessions: month.sessions,
       activeUsers: month.users,
       id: `${month.month}-engagement`
@@ -46,6 +46,19 @@ const AdvancedAnalytics = ({ monthlyData, locationData }: AnalyticsProps) => {
       id: `${loc.location}-utilization`
     }));
   }, [locationData]);
+
+  // Key Insights Section
+  const averageSessionsPerUser = engagementMetrics.length > 0 
+    ? (engagementMetrics.reduce((sum, m) => sum + m.sessionsPerUser, 0) / engagementMetrics.length).toFixed(1)
+    : '0.0';
+
+  const mostUtilizedLocation = locationData.length > 0
+    ? locationData.reduce((prev, curr) => prev.sessions > curr.sessions ? prev : curr).location
+    : 'N/A';
+
+  const latestGrowthTrend = trends.length > 0
+    ? trends[trends.length - 1]?.sessionGrowth.toFixed(1)
+    : '0.0';
 
   return (
     <div className="advanced-analytics">
@@ -125,27 +138,21 @@ const AdvancedAnalytics = ({ monthlyData, locationData }: AnalyticsProps) => {
           <div className="insight-card">
             <h4>Growth Trends</h4>
             <p>
-              {trends[trends.length - 1]?.sessionGrowth > 0 
-                ? `Positive growth of ${trends[trends.length - 1]?.sessionGrowth.toFixed(1)}% in recent sessions`
-                : 'Declining trend in recent sessions'}
+              {Number(latestGrowthTrend) > 0 
+                ? `Positive growth of ${latestGrowthTrend}% in recent sessions`
+                : 'No growth trend available'}
             </p>
           </div>
           <div className="insight-card">
             <h4>User Engagement</h4>
             <p>
-              Average sessions per user: {
-                (engagementMetrics.reduce((sum, m) => sum + m.sessionsPerUser, 0) / engagementMetrics.length).toFixed(1)
-              }
+              Average sessions per user: {averageSessionsPerUser}
             </p>
           </div>
           <div className="insight-card">
             <h4>Location Insights</h4>
             <p>
-              Most utilized location: {
-                locationUtilization.reduce((prev, curr) => 
-                  prev.utilizationRate > curr.utilizationRate ? prev : curr
-                ).location
-              }
+              Most utilized location: {mostUtilizedLocation}
             </p>
           </div>
         </div>

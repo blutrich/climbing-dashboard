@@ -100,12 +100,12 @@ export const fetchLocalData = async () => {
     const users = Papa.parse(usersText, parseOptions).data
       .filter((user: any) => user && user.email) // Only keep users with valid email
       .map((user: any) => ({
-        email: user.email?.trim(),
+        email: user.email?.trim().toLowerCase(),  // Normalize email to lowercase
         firstName: user.firstName || user.firstname || '',
         lastName: user.lastName || user.lastname || ''
       }));
 
-    console.log('Parsed users:', users.slice(0, 5));  // Log first 5 users
+    console.log('Available users:', users.map(u => u.email));  // Debug log
 
     const trainings1 = Papa.parse(trainings1Text, parseOptions).data as Training[];
     const trainings2 = Papa.parse(trainings2Text, parseOptions).data as Training[];

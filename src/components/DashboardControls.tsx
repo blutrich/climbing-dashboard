@@ -37,7 +37,18 @@ const DashboardControls = ({
     const [start, end] = dates;
     setStartDate(start);
     setEndDate(end);
-    onDateRangeChange(start, end);
+    
+    // Only trigger filter when both dates are selected
+    if (start && end) {
+      // Set time to start and end of day for accurate filtering
+      const startOfDay = new Date(start);
+      startOfDay.setHours(0, 0, 0, 0);
+      
+      const endOfDay = new Date(end);
+      endOfDay.setHours(23, 59, 59, 999);
+      
+      onDateRangeChange(startOfDay, endOfDay);
+    }
   };
 
   const handleLocationChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -61,9 +72,9 @@ const DashboardControls = ({
             className="user-select"
           >
             <option value="all">All Users</option>
-            {users.map(user => (
+            {[...new Map(users.map(user => [user.email, user])).values()].map(user => (
               <option key={user.email} value={user.email}>
-                {user.firstName} {user.lastName}
+                {user.firstName || user.email} {user.lastName}
               </option>
             ))}
           </select>
@@ -80,6 +91,9 @@ const DashboardControls = ({
           className="date-picker"
           placeholderText="Select date range"
           dateFormat="yyyy/MM/dd"
+          isClearable={true}
+          showMonthYearPicker
+          maxDate={new Date()}
         />
       </div>
 
